@@ -28,9 +28,3 @@ load(
 
 apple_rules_dependencies()
 
-# Used to create objc_libraries with typical Material warnings.
-git_repository(
-    name = "bazel_ios_warnings",
-    remote = "https://github.com/material-foundation/bazel_ios_warnings.git",
-    tag = "v3.0.0",
-)
