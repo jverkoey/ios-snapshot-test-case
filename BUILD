@@ -14,7 +14,6 @@
 
 load(":apple_framework_relative_headers.bzl", "apple_framework_relative_headers")
 
-
 IOS_MINIMUM_OS = "8.0"
 
 objc_library(
@@ -29,7 +28,7 @@ objc_library(
     ]),
     enable_modules = 1,
     visibility = ["//visibility:public"],
-    deps = [":SnapshotTestCaseFrameworkHeaders",],
+    deps = [":SnapshotTestCaseFrameworkHeaders"],
 )
 
 apple_framework_relative_headers(
