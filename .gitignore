@@ -1,6 +1,4 @@
 .DS_Store
-build
-!BUILD
 *.pbxuser
 !default.pbxuser
 *.mode1v3
