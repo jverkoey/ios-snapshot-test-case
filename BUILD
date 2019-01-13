@@ -14,8 +14,6 @@
 
 load(":apple_framework_relative_headers.bzl", "apple_framework_relative_headers")
 
-IOS_MINIMUM_OS = "8.0"
-
 objc_library(
     name = "SnapshotTestCase",
     srcs = native.glob([
