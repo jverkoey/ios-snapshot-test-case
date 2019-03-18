@@ -25,6 +25,7 @@ objc_library(
         "FBSnapshotTestCase/Categories/*.h",
     ]),
     enable_modules = 1,
+    sdk_frameworks = ["QuartzCore"],
     visibility = ["//visibility:public"],
     deps = [":SnapshotTestCaseFrameworkHeaders"],
 )
