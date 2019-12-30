@@ -1,6 +1,27 @@
 language: objective-c
-osx_image: xcode9.4
-before_script:
-  - gem install cocoapods -v 1.5.3 --no-ri --no-rdoc
+os: osx
+osx_image:
+  - xcode11.3
+  - xcode11.2
+  - xcode10.3
+env:
+  - TOOLCHAIN=bazel
+  - PROJECT="build.sh"
+jobs:
+  include:
+    - name: "pod lib lint"
+      osx_image: xcode11.3
+      env: TOOLCHAIN=cocoapods
+before_install:
+  - if [ "$TOOLCHAIN" == "bazel" ]; then
+      wget -O bazelisk "https://github.com/bazelbuild/bazelisk/releases/download/v1.2.1/bazelisk-darwin-amd64";
+      chmod +x "bazelisk";
+    fi
 script:
-  ./build.sh
+  - if [ "$TOOLCHAIN" == "bazel" ]; then
+      ./bazelisk test //...;
+    elif [ "$TOOLCHAIN" == "cocoapods" ]; then
+      pod lib lint;
+    elif [ "$PROJECT" == "build.sh" ]; then
+      ./build.sh
+    fi

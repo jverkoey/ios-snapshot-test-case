@@ -12,19 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load(":apple_framework_relative_headers.bzl", "apple_framework_relative_headers")
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@bazel_apple_framework_relative_headers//:apple_framework_relative_headers.bzl", "apple_framework_relative_headers")
 
 objc_library(
     name = "SnapshotTestCase",
-    srcs = native.glob([
+    srcs = glob([
         "FBSnapshotTestCase/*.m",
         "FBSnapshotTestCase/Categories/*.m",
     ]),
-    hdrs = native.glob([
+    hdrs = glob([
         "FBSnapshotTestCase/*.h",
         "FBSnapshotTestCase/Categories/*.h",
     ]),
     enable_modules = 1,
+    module_name = "SnapshotTestCase",
     sdk_frameworks = ["QuartzCore"],
     visibility = ["//visibility:public"],
     deps = [":SnapshotTestCaseFrameworkHeaders"],
@@ -32,9 +34,16 @@ objc_library(
 
 apple_framework_relative_headers(
     name = "SnapshotTestCaseFrameworkHeaders",
-    hdrs = native.glob([
+    hdrs = glob([
         "FBSnapshotTestCase/*.h",
         "FBSnapshotTestCase/Categories/*.h",
     ]),
     framework_name = "FBSnapshotTestCase",
+)
+
+build_test(
+    name = "BuildTest",
+    targets = [
+        ":SnapshotTestCase"
+    ],
 )
