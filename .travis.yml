@@ -23,5 +23,5 @@ script:
     elif [ "$TOOLCHAIN" == "cocoapods" ]; then
       pod lib lint;
     elif [ "$PROJECT" == "build.sh" ]; then
-      ./build.sh
+      ./build.sh;
     fi
