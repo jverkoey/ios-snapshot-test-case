@@ -6,7 +6,7 @@ function ci_lib() {
     NAME=$1
     xcodebuild -project FBSnapshotTestCase.xcodeproj \
                -scheme "FBSnapshotTestCase iOS" \
-               -destination "platform=iOS Simulator,name=${NAME}" \
+               -destination "platform=iOS Simulator,name=${NAME},OS=12.2" \
                -sdk iphonesimulator \
                build test
 }
@@ -17,7 +17,7 @@ function ci_demo() {
     pod install
     xcodebuild -workspace FBSnapshotTestCaseDemo.xcworkspace \
                -scheme FBSnapshotTestCaseDemo \
-               -destination "platform=iOS Simulator,name=${NAME}" \
+               -destination "platform=iOS Simulator,name=${NAME},OS=12.2" \
                build test
     popd
 }
